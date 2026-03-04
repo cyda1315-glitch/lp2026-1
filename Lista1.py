@@ -39,7 +39,7 @@ def q5():
 #6. Faça um programa que leia um número inteiro e imprima o seu
 #   antecessor e o seu sucessor.
 def q6():
-    numero = int(input('Digite um númerro inteiro: "))
+    numero = int(input("Digite um número inteiro: "))
     antecessor = numero - 1
     sucessor = numero + 1
     print("O número antecessor é: ", antecessor)
@@ -51,11 +51,11 @@ def q6():
 def q7():
     nome = input("Digite o nome do cliente: ")
     endereco = input("Digite o endereço do cliente: ")
-    telefone = input(Digite o telefone do cliente: ")
+    telefone = input("Digite o telefone do cliente: ")
     print("Dados do cliente")
     print("Nome:", nome)
-    print(Endereço:", endereco)
-    print(Telefone:", telefone)
+    print("Endereço:", endereco)
+    print("Telefone:", telefone)
 
 
 #8. Faça um programa que leia dois números inteiros e imprima a
@@ -64,14 +64,14 @@ def q8():
     n1 = int(input("Digite o primeiro número inteiro: "))
     n2 = int(input("Digite o segundo número inteiro: "))
     subtracao = n1 - n2
-    print("A subtração é:", subtracacao )
+    print("A subtração é:", subtracao)
 
 
 #9. Faça um programa que leia um número real e imprima ¼ deste número.
 def q9():
-    numero_real = float(input("Digite um número real: ")
+    numero_real = float(input("Digite um número real: "))
     percentual = numero_real / 100
-    print("O percentual do número é: {percentual}")
+    print(f"O percentual do número é: {percentual}")
 
 
 #10. Faça um programa que leia três números reais e calcule a
@@ -94,7 +94,8 @@ def q11():
     n2 = float(input("Digite o 2° número real: "))
     adicao = n1 + n2 
     subtracao = n1 - n2
-    multiplicacao = n1 / n2 
+    multiplicacao = n1 * n2
+    divisao = n1 / n2
     print("Adição:", adicao)
     print("Subtração:", subtracao)
     print("Multiplicação:", multiplicacao)
@@ -106,7 +107,7 @@ def q11():
 def q12():
     numero = float(input("Digite um número real: "))
     quadrado = numero ** 2
-    print(O quadrado do número é:", quadrado)
+    print("O quadrado do número é:", quadrado)
 
 
 #13. Faça um programa que leia o saldo de uma conta poupança e
@@ -146,10 +147,10 @@ def q15():
 #    o valor do novo salário.
 def q16():
     salario = float(input("Digite seu salário atual: "))
-    percentual_reajuste = float(inpt("Digite o percentual do reajuste: "))
-    reajuste = salario * (percentual_reajuste / 100
+    percentual_reajuste = float(input("Digite o percentual do reajuste: "))
+    reajuste = salario * (percentual_reajuste / 100)
     novo_salario = salario + reajuste
-    print("Seu novo salário é:", novo_salario
+    print("Seu novo salário é:", novo_salario)
 
 
 #17. Faça um programa que calcule a conversão entre graus centígrados
@@ -157,10 +158,12 @@ def q16():
 #    com base na fórmula a seguir. Após calcular o programa deve
 #    imprimir o resultado da conversão.
 #    F = (9 x C + 160) / 5
+
 def q17():
     celsius = float(input("Digite a temperatura em celsius: "))
     fahrenheit = (9 * celsius + 160) / 5	
     print("A temperatura em Fahrenheit é:", fahrenheit)
+
 
 
 #18. Faça um programa que calcule a quantidade de litros de combustível
@@ -194,9 +197,10 @@ def q19():
     valor_prestacao = float(input("Digite o valor da prestação em atraso: "))
     taxa_juros = float(input("Digite a taxa de juros: "))
     periodo_atraso = float(input("Digite o período de atraso: "))
-    juros_cobrados = valor_prestacao + juros_cobrados
-    print(f"\njuros a serem cobrados pelo período de atraso: R$ {juros_cobrados}")
-    print(f"valor da prestação com o juros: R${valor_final})
+    juros_cobrados = valor_prestacao * taxa_juros * periodo_atraso
+    valor_final = valor_prestacao + juros_cobrados
+    print(f"Juros cobrados: R$ {juros_cobrados}")
+    print(f"Valor final com juros: R$ {valor_final}")
 
 
 #20. Faça um programa que efetue a apresentação do valor da conversão
@@ -206,4 +210,4 @@ def q20():
     valor_dolar = float(input("Digite o valor do dólar: "))
     catacao_dolar = float(input("Digite a cotação do dólar para real (R$): "))
     valor_real = valor_dolar * cotacao_dolar
-    print(f"O valor de US${valor_dolar:} convertendo para real é de R${valor_real})
+    print(f"O valor de US${valor_dolar} convertendo para real é de R${valor_real}")
