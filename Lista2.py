@@ -37,26 +37,77 @@ def exemploCaso():      # serve apenas para valores conhecidos (poucos) e exatos
 
 #1. Faça um programa que leia dois valores numéricos inteiros e efetue
 #   a adição, caso o resultado seja maior que 10, apresentá-lo.
+def q1():
+    num1 = int(input("Digite o primeiro número: "))
+    num2 = int(input("Digite o segundo número: "))
+    adicao = num1 + num2
+    if adicao > 10:
+        print("Resultado da soma é: ", soma)
 
 #2. Faça um programa que leia dois valores inteiros e efetue a adição.
 #   Caso o valor somado seja maior que 20, este deverá ser apresentado
 #   somando-se a ele mais 8, caso o valor somado seja menor ou igual a
 #   20, este deverá ser apresentado subtraindo-se 5.
+def q2():
+    num1 = int(input("Digite o primeiro número: "))
+    num2 = int(input("Digite o segundo número: "))
+    adicao = num1 + num2
+    if adicao > 20:
+    
+      resultado = adicao + 8
+    else:
+        resultado = adicao - 5
+
+    print(f'{num1} + {num2} = {resultado}')
+
 
 #3. Faça um programa que leia um número e imprima uma das duas mensagens:
 #   "É múltiplo de 3"ou "Não é múltiplo de 3".
+def q3():
+    num = int(input("Digite um número inteiro: "))
+    if num % 3 == 0:
+        print(f'{num} é múltiplo de 3')
+    else:
+        print(f'{num} não é múltiplo de 3')
+
+
 
 #4. Faça um programa que leia um número e informe se ele é ou não divisível por 5.
+def q4():
+    num = int(input('Digite um número inteiro: '))
+    if num % 5 == 0:
+       print(f'{num} é divisivel por 5')
+    else:
+       print(f'{num} não é divisivel por 5')
+
 
 #5. Faça um programa que leia um número e informe se ele é divisível por 3 e por 7.
+def q5():
+    num1 = int(input('Digite um numero inteiro: '))
+    num2 = int(input('Digite um numero inteiro: '))
+    if num1 % 3 == 0 and num2 % 7 == 0:
+        print(f'{num1} e {num2} são divisiveis por 3 e 7')
+    else:
+        print(f'{num1} e {num2} não são divisiveis por 3 e 7')
+
 
 #6. A prefeitura do Rio de Janeiro abriu uma linha de crédito para os funcionários
 #   estatutários. O valor máximo da prestação não poderá ultrapassar 30% do salário
 #   bruto. Faça um programa que permita entrar com o salário bruto
 #   e o valor da prestação e informar se o empréstimo pode ou não ser concedido.
+def q6():
+    salario = float(input("Digite qual seu salario bruto: "))
+    prestacao = float(input("Qual o valor da prestação: "))
+    limite = salario * 0.30
+    if prestacao <= limite:
+        print("Empréstimo PODE ser concedido.")
+    else:
+        print("Empréstimo NÃO PODE ser concedido")
+
 
 #7. Faça um programa que leia um número e indique se o número está compreendido
 #   entre 20 e 50 ou não.
+
 
 #8. Faça um programa que leia um número e imprima uma das mensagens:
 #   "Maior do que 20", "Igual a 20"ou "Menor do que 20".
