@@ -96,13 +96,13 @@ def q5():
 #   bruto. Faça um programa que permita entrar com o salário bruto
 #   e o valor da prestação e informar se o empréstimo pode ou não ser concedido.
 def q6():
-    salario = float(input("Digite qual seu salario bruto: "))
+    salario = float(input("Digite qual seu salario bruto R$: "))
     prestacao = float(input("Qual o valor da prestação: "))
-    limite = salario * 0.30
-    if prestacao <= limite:
-        print("Empréstimo PODE ser concedido.")
+    prestacao_maxima = salario * 0.30
+    if prestacao > prestacao_maxima:
+       print(f'Empréstimo NÃO PODE ser concedido. Prestação máxima: R$ {prestacao_maxima}') 
     else:
-        print("Empréstimo NÃO PODE ser concedido")
+        print("Empréstimo PODE ser concedido.")
 
 
 #7. Faça um programa que leia um número e indique se o número está compreendido
