@@ -42,7 +42,7 @@ def q1():
     num2 = int(input("Digite o segundo número: "))
     adicao = num1 + num2
     if adicao > 10:
-        print("Resultado da soma é: ", soma)
+        print("Resultado da soma é: ", adicao)
 
 #2. Faça um programa que leia dois valores inteiros e efetue a adição.
 #   Caso o valor somado seja maior que 20, este deverá ser apresentado
@@ -107,24 +107,95 @@ def q6():
 
 #7. Faça um programa que leia um número e indique se o número está compreendido
 #   entre 20 e 50 ou não.
-
+def q7():
+    numero = int(input("Digite um número: "))
+    if 20 <= numero <= 50:
+        print(f'{numero} está compreendido entre 20 e 50.')
+    else:
+        print(f'{numero} NÃO está compreendido entre 20 e 50.')
 
 #8. Faça um programa que leia um número e imprima uma das mensagens:
 #   "Maior do que 20", "Igual a 20"ou "Menor do que 20".
+def q8():
+    numero = float(input("Digite um número: "))
+
+    if numero > 20:
+        print("Maior do que 20")
+    elif numero == 20:
+        print("Igual a 20")
+    else:
+        print("Menor do que 20")
+
 
 #9. Faça um programa que permita entrar com o ano de nascimento da pessoa e com o
 #   ano atual. O programa deve imprimir a idade da pessoa. Não se esqueça de
 #   verificar se o ano de nascimento informado é válido.
+def q9():
+    ano_nascimento = int(input("Digite o ano de nascimento: "))
+    ano_atual = int(input("Digite o ano atual: "))
+
+    if ano_nascimento > ano_atual or ano_nascimento < 1880:
+        print("Ano de nascimento inválido.")
+    else:
+        idade = ano_atual - ano_nascimento
+        print(f"A sua idade é: {idade} anos.")
 
 #10. Faça um programa que leia três números inteiros e imprima os três em ordem
 #crescente.
+def q10():
+    n1 = int(input("Digite o primeiro número: "))
+    n2 = int(input("Digite o segundo número: "))
+    n3 = int(input("Digite o terceiro número: "))
+
+    if n1 <= n2 and n1 <= n3:
+        menor = n1
+        if n2 <= n3:
+            meio, maior = n2, n3
+        else:
+            meio, maior = n3, n2
+    elif n2 <= n1 and n2 <= n3:
+        menor = n2
+        if n1 <= n3:
+            meio, maior = n1, n3
+        else:
+            meio, maior = n3, n1
+    else:
+        menor = n3
+        if n1 <= n2:
+            meio, maior = n1, n2
+        else:
+            meio, maior = n2, n1
+
+    print(f"Ordem crescente: {menor}, {meio}, {maior}")
 
 #11. Faça um programa que leia 3 números e imprima o maior deles.
+def q11():
+    n1 = int(input("Digite o primeiro número: "))
+    n2 = int(input("Digite o segundo número: "))
+    n3 = int(input("Digite o terceiro número: "))
+
+    maior = n1
+
+    if n2 > maior:
+        maior = n2
+
+    if n3 > maior:
+        maior = n3
+        print(f"O maior número digitado foi: {maior}")
 
 #12. Faça um programa que leia a idade de uma pessoa e informe:
 #• Se é maior de idade
 #• Se é menor de idade
 #• Se é maior de 65 anos
+def q12():
+    idade = int(input("Digite sua idade: "))
+    if idade >= 65:
+       print(f"Mellhor idade")
+    elif idade >= 18:
+       print(f"Maior de idade")
+    else:
+        print("Menor idade")
+
 
 #13. Faça um programa que permita entrar com o nome, a nota da prova 1 e a nota
 #da prova 2 de um aluno. O programa deve imprimir o nome, a nota da prova 1,
