@@ -1,6 +1,9 @@
 '''
 Exercícios sobre os comandos de condição em python
 '''
+import random
+from datetime import detetime
+from util import inputfloat, inputfloat
 
 def exemploSe():
     idade = 18
@@ -168,12 +171,27 @@ def q10():
 
     print(f"Ordem crescente: {menor}, {meio}, {maior}")
 
+#10.1 Faça um programa que leia três números inteiros e imprima os três em ordem
+#crescente.
+ a = inputint('Digite um número inteiro:')
+ b = inputint('Digite um número inteiro:')
+ c = inputint('Digite um número inteiro:')
+resultado=""
+
+resultado+= f"{a} {b} {c}" if a<b<c else ""
+resultado+= f"{a} {c} {b}" if a<c<b else ""
+resultado+= f"{b} {a} {c}" if b<a<c else ""
+resultado+= f"{b} {c} {a}" if b<c<a else ""
+resultado+= f"{b} {a} {b}" if c<a<b else ""
+resultado+= f"{c} {b} {a}" if c<b<a else ""
+print (resultado)
+
+
 #11. Faça um programa que leia 3 números e imprima o maior deles.
 def q11():
-    n1 = int(input("Digite o primeiro número: "))
-    n2 = int(input("Digite o segundo número: "))
-    n3 = int(input("Digite o terceiro número: "))
-
+    n1 = int(input("Digite o primeiro número: "))          
+    n2 = int(input("Digite o segundo número: "))           
+    n3 = int(input("Digite o terceiro número: "))         
     maior = n1
 
     if n2 > maior:
@@ -182,6 +200,12 @@ def q11():
     if n3 > maior:
         maior = n3
         print(f"O maior número digitado foi: {maior}")
+#11.1 Faça um programa que leia 3 números e imprima o maior deles.
+   Maior = inputint('Digite um número inteiro: ')
+   numero = inputint('Digite um segundo número:')
+
+
+
 
 #12. Faça um programa que leia a idade de uma pessoa e informe:
 #• Se é maior de idade
@@ -202,6 +226,18 @@ def q12():
 #a nota da prova 2, a média das notas e uma das mensagens: "Aprovado",
 #"Reprovado"ou "em Prova Final"(a média é 7 para aprovação, menor que 3 para
 #reprovação e as demais em prova final).
+def q13():
+    nome = input('Nome: ')
+    n1 = int(input('Nota 1:'))
+    n2 = int(input('Nota 2:'))
+    media = (n1 + n2)/2
+    print(f'{nome}: {n1}, {n2} = {media}')
+    if media >= 7:
+        print('Situação: Aprovado')
+    elif media >= 3:
+        print('Situação: Prova Final')
+    else:
+        print('Situação: Reprovado')
 
 #14. Faça um programa que permita entrar com o salário de uma pessoa e imprima o
 #desconto do INSS segundo a tabela seguir:
@@ -210,10 +246,32 @@ def q12():
 #Maior que R$600,00 e menor ou igual a R$1200,00 20%
 #Maior que R$1200,00 e menor ou igual a R$2000,00 25%
 #Maior que R$2000,00 30%
+def q14():
+    salario = float(input('Salário: '))
+    desconto_inss = 0
+
+    if salario <= 600:
+        desconto_inss = 0
+    elif salario <= 1200:
+        desconto_inss = salario * 0.2
+    elif salario <= 2000:
+        desconto_inss = salario * 0.25
+    else:
+        desconto_inss = salario * 0.3
+
+    print(f'Desconto do INSS: R$ {desconto_inss}')
+    print(f'Salário Líquido: R$ {salario - desconto_inss}')
 
 #15. Um comerciante comprou um produto e quer vendê-lo com um lucro de 45% se o
 #valor da compra for menor que R$20,00, caso contrário, o lucro será de 30%.
 #Faça um programa que leia o valor do produto e imprima o valor da venda.
+
+def q15():
+    valor = int(input('Valor do produto: R$'))
+    if valor < 20:
+        print(f'Valor de Venda: R$ {valor * 1.45}')
+    else:
+        print(f'Valor de Venda: R$ {valor * 1.3}')
 
 #16. A confederação brasileira de natação irá promover eliminatórias para o
 #próximo mundial. Faça um programa que receba a idade de um nadador e imprima
@@ -224,6 +282,21 @@ def q12():
 #Juvenil A 11 - 13 anos
 #Juvenil B 14 - 17 anos
 #Sênior maiores de 18 anos
+def q16():
+    idade = int(input('Idade do nadador(a): '))
+    if idade < 5:
+        print('Não habilitado para participar')
+    elif idade <= 7:
+        print('Infantil A')
+    elif idade <= 10:
+        print('Infantil B')
+    elif idade <= 13:
+        print('Juvenil A')
+    elif idade <= 17:
+        print('Juvenil B')
+    else
+        print('Sênior')
+
 
 #17. Depois da liberação do governo para as mensalidades dos planos de saúde,
 #as pessoas começaram a fazer pesquisas para descobrir um bom plano, não
