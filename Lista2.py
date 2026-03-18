@@ -2,7 +2,7 @@
 Exercícios sobre os comandos de condição em python
 '''
 import random
-from datetime import detetime
+from datetime import datetime
 from util import inputfloat, inputfloat
 
 def exemploSe():
@@ -171,22 +171,6 @@ def q10():
 
     print(f"Ordem crescente: {menor}, {meio}, {maior}")
 
-#10.1 Faça um programa que leia três números inteiros e imprima os três em ordem
-#crescente.
- a = inputint('Digite um número inteiro:')
- b = inputint('Digite um número inteiro:')
- c = inputint('Digite um número inteiro:')
-resultado=""
-
-resultado+= f"{a} {b} {c}" if a<b<c else ""
-resultado+= f"{a} {c} {b}" if a<c<b else ""
-resultado+= f"{b} {a} {c}" if b<a<c else ""
-resultado+= f"{b} {c} {a}" if b<c<a else ""
-resultado+= f"{b} {a} {b}" if c<a<b else ""
-resultado+= f"{c} {b} {a}" if c<b<a else ""
-print (resultado)
-
-
 #11. Faça um programa que leia 3 números e imprima o maior deles.
 def q11():
     n1 = int(input("Digite o primeiro número: "))          
@@ -200,12 +184,6 @@ def q11():
     if n3 > maior:
         maior = n3
         print(f"O maior número digitado foi: {maior}")
-#11.1 Faça um programa que leia 3 números e imprima o maior deles.
-   Maior = inputint('Digite um número inteiro: ')
-   numero = inputint('Digite um segundo número:')
-
-
-
 
 #12. Faça um programa que leia a idade de uma pessoa e informe:
 #• Se é maior de idade
@@ -294,7 +272,7 @@ def q16():
         print('Juvenil A')
     elif idade <= 17:
         print('Juvenil B')
-    else
+    else:
         print('Sênior')
 
 
@@ -310,10 +288,60 @@ def q16():
 #Acima de 45 até 59 anos R$150,00
 #Acima de 59 até 65 anos R$250,00
 #Maior que 65 anos R$400,00
+def q17():
+    nome = input('Nome: ')
+    idade = int(input('Insira sua idade: '))
+    if idade <= 10:
+     valor = 30
+    elif idade <= 29:
+     valor = 60
+    elif idade <= 45:
+     valor = 120
+    elif idade <= 59:
+     valor = 150
+    elif idade <= 65:
+     valor = 250
+    else:
+        valor = 400
+    
+    print(f"==============================================")
+    print(f"Nome: {nome}")
+    print(f"Valor do plano R$ {valor:.2f}")
+    print(f"==============================================")
+
 
 #18. Faça um programa que leia um número inteiro entre 1 e 12 e escreva o mês
 #correspondente. Caso o usuário digite um número fora desse intervalo, deverá
 #aparecer uma mensagem informando que não existe mês com este número.
+def q18():
+    numero = int(input("Digite um número entre 1 e 12: "))
+
+    if numero == 1:
+        print("Janeiro")
+    elif numero == 2:
+        print("Fevereiro")
+    elif numero == 3:
+        print("Março")
+    elif numero == 4:
+        print("Abril")
+    elif numero == 5:
+        print("Maio")
+    elif numero == 6:
+        print("Junho")
+    elif numero == 7:
+        print("Julho")
+    elif numero == 8:
+        print("Agosto")
+    elif numero == 9:
+        print("Setembro")
+    elif numero == 10:
+        print("Outubro")
+    elif numero == 11:
+        print("Novembro")
+    elif numero == 12:
+        print("Dezembro")
+    else:
+     print("Não existe mês com este número. ")
 
 #19. Em um campeonato nacional de arco-e-flecha, tem-se equipes de três jogadores
 #para cada estado. Sabendo-se que os arqueiros de uma equipe não obtiveram o
