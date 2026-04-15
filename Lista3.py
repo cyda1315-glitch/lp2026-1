@@ -1,6 +1,14 @@
 '''
 Lista de Exercícios referentes a estruturas de iteração (repetição)
 '''
+from util import inputint, inputfloat, gerar_palavra
+import random
+from typing import Final
+
+VERMELHO: Final = '\033[31m'
+VERDE: Final = '\033[32m'
+RESET: Final = '\033[m'
+
 def exemploPara(): # Quando se sabe a qtde de repetições
     for c in range(10): #0-9 Baseado em intervalo (inicio e fim)
         print(c)
@@ -12,49 +20,44 @@ def exemploPara(): # Quando se sabe a qtde de repetições
 def exemploEnquanto(): # Quando não se sabe quantas iterações serão necessárias
     opcao=-1
     while opcao != 0: #baseado em uma condição (True|False)
-        opcao = int(input('Opção: '))
+        opcao = inputint('Opção: ')
 
 #1.Faça um programa que imprima todos os números de 1 até 100.
 def q1():
     for c in range(1,101):
-     print(c, end=" ")
+        print(c, end=' ')
 
 #2. Faça um programa que imprima todos os números pares de 100 até 1.
 def q2():
     for c in range(100,1,-2):
-        print(c)
+        print(c, end=' ')
 
 #3. Faça um programa que imprima os múltiplos de 5, no intervalo de 1 até 500.
 def q3():
-    for multiplos in range(1,501,5):
-     print(multiplos)
+    for c in range(5,500,5):
+        print(c, end=' ')
 
 #4. Faça um programa que permita entrar com o nome, a idade e o sexo de 20
 #pessoas.O programa deve imprimir o nome da pessoa se ela for do sexo masculino
 #e tiver mais de 21 anos.
-def q4():
-    for i in range(1,21):
-        print(f"{i}ª pessoa")
-        nome = input("Digite o nome: ")
-        idade = int(input("Digite a idade: "))
-        sexo = input("Digite o sexo F ou M: ")
-
-        if sexo == "M" and idade > 21:
-            print(f"Resultado: {nome}")
-        else:
-            print("A pessoa não atende os criterios M > 21 anos")
-
+def q4() -> None:
+    for _ in range(20):
+        nome: str = gerar_palavra()
+        idade: int = random.randrange(0,121)
+        sexo: str = random.choice(('M','F'))
+        if sexo == 'M' and idade >= 21:
+            print(f'A pessoa {nome:10} de sexo {sexo} tem {idade} anos.')
 
 #5. Sabendo-se que a unidade lógica e aritmética calcula o produto através de somas
 #sucessivas, crie um programa que calcule o produto de dois números inteiros
 #lidos. Suponha que os números lidos sejam positivos.
-def q5():
-    num1 = int(input("Digite o primeiro número: "))
-    num2 = int(input("Digite o segundo número: "))
-    produto = 0
-    for _ in range(num2):
-        produto = num1
-        print(f"O produto de {num1} x {num2} é: {produto}")
+def q5() -> None:
+    multiplicando: int = inputint('Multiplicando: ')
+    multiplicador: int = inputint('Multiplicador: ')
+    produto: int = 0
+    for _ in range(multiplicando):
+        produto += multiplicador
+    print(f'{multiplicando} * {multiplicador} = {produto}')
 
 #6. Crie um programa que imprima os 20 primeiros termos da série de Fibonacci.
 #Observação: os dois primeiros termos desta série são 1 e 1 e os demais são gerados
@@ -62,36 +65,32 @@ def q5():
 #• 1 + 1 = 2, terceiro termo;
 #• 1 + 2 = 3, quarto termo, etc.
 # 1 1 2 3 5 8 13 21
-def q6():
-    print("Série de fibonacci")
-    a = 1
-    b = 1
-    for i in range(20):
-        print(a,end="")
-        proximo = a + b
-        a = b
-        b = proximo
-        print()
+def q6() -> None:
+    anterior: int = 0
+    atual: int = 1
+    for _ in range(20):
+        print(atual, end=' ')
+        proximo = atual + anterior
+        anterior = atual
+        atual = proximo
 
 #7. Crie um programa que permita entrar com o nome, a nota da
 #prova 1 e da prova 2 de 15 alunos. Ao final, imprimir uma listagem, contendo:
 #nome, nota da prova 1, nota da prova 2, e média das notas de cada aluno. Ao final,
 #imprimir a média geral da turma.
-def q7():
-    soma_media = 0
-    alunos = 15
-    for i in range(alunos):
-        nome = input("Nome: ")
-        n1 = int(input("Nota 1° prova: "))
-        n2 = int(input("Nota 2° prova: "))
-        media =(n1 +n2) / 2
-        soma_media = media
-        
-
-
-
-
-
+def q7() -> None:
+    QTDE_ALUNOS: Final = 15
+    diario = f'{'NOME':<11}{'N1':>5}{'N2':>5}{'MEDIA':^7}\n\n'
+    media_geral: float = 0.0
+    for _ in range(QTDE_ALUNOS):
+        nome: str = gerar_palavra()
+        prova1: float = round(random.random()*10,1)
+        prova2: float = round(random.random()*10,1)
+        media: float = round((prova1 + prova2)/2,1)
+        media_geral += media
+        diario += f'{nome:<11}{prova1:>5}{prova2:>5}{VERMELHO if media < 6 else VERDE}{media:>5}{RESET}\n'
+    print(diario)
+    print(f'\nMédia da Turma: {media_geral/QTDE_ALUNOS:.1f}')
 
 #8. Faça um programa que permita entrar com o nome e o salário bruto de 10 pessoas.
 #Após ler os dados, imprimir o nome e o valor da alíquota do imposto de renda
@@ -123,11 +122,45 @@ def q7():
 #11. Construa um programa que leia vários números e informe quantos números
 #entre 100 e 200 foram digitados. Quando o valor 0 (zero) for lido, o algoritmo
 #deverá cessar sua execução.
+def q11() -> None:
+    numero: int = 1
+    cont_100_200: int = 0
+    qtde_numeros: int = 0
+    while numero != 0:
+        numero = random.randrange(0,200)
+        # print(numero)
+        cont_100_200 += 1 if 100<=numero<=200 else 0
+        qtde_numeros += 1
+    print(f'De {qtde_numeros} gerados, {cont_100_200} estão no intervalo entre 100 e 200!')
 
 #12. Dado um país A, com 5 milhões de habitantes e uma taxa de natalidade de 3% ao
 #ano, e um país B com 7 milhões de habitantes e uma taxa de natalidade de 2% ao
 #ano, fazer um programa que calcule e imprima o tempo necessário para que a
 #população do país A ultrapasse a população do país B.
+def q12() -> None:
+    paisA: int = 5_000_000
+    paisB: int = 7_000_000
+    ano: int = 0
+    while paisA < paisB:
+        ano+=1
+        paisA = paisA*1.03
+        paisB = paisB*1.02
+    print(f'Ao final de {ano} anos, a população do país A superou a de B')
+    print(f'População do país A = {int(paisA)}')
+    print(f'População do país B = {int(paisB)}')
+
+#12.1 Faça uma simulação de investimento para que se descubra quantos anos serão necessários
+# para que se alcance a marca de 1 milhão de reais a partir de um saldo inicial, 
+# um aporte mensal regular e uma taxa de retorno mensal constante.
+def q121() -> None:
+    saldo: float = inputfloat('Saldo inicial: R$ ', min=0)
+    aporte: float = inputfloat('Aporte mensal: R$ ', min=0)
+    taxa: float = inputfloat('Taxa de retorno mensal (%): ', min=0.1)
+    mes: int = 0
+    while saldo < 1_000_000:
+        mes += 1
+        saldo = saldo + aporte + saldo*taxa/100
+    print(f'Tempo do investimento: {int(mes/12)} anos e {mes%12} meses.')
 
 #13. Uma empresa de fornecimento de energia elétrica faz a leitura mensal dos medidores
 #de consumo. Para cada consumidor, são digitados os seguintes dados:
@@ -323,6 +356,8 @@ def q7():
 #analisadas.
 #Obs.: Para encerrar a entrada de dados, digite um número menor que zero para a
 #idade.
+def q30() -> None:
+    raise NotImplementedError('q30() ainda não foi codificada')
 
 questao = int(input('Questão a ser executada: '))
 eval(f'q{questao}()')
