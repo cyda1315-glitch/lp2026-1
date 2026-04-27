@@ -336,7 +336,8 @@ def q121() -> None:
 #• a média das alturas das pessoas com idade entre 10 e 20 anos;
 #• a porcentagem de pessoas com peso inferior a 40 quilos entre todas as
 #pessoas analisadas.
-
+def q28():
+    
 #29. Construa um programa que receba o valor e o código de várias mercadorias
 #vendidas em um determinado dia. Os códigos obedecem a lista a seguir:
 #L-limpeza
