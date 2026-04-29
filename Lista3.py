@@ -99,6 +99,35 @@ def q7() -> None:
 #Salário menor que R$1300,00 Isento
 #Salário maior ou igual a R$1300,00 e menor que R$2300,00 10% do salário bruto
 #Salário maior ou igual a R$2300,00 15% do salário bruto
+def q8() -> None:
+    print("Entrada de Dados - IRPF")
+    print("-" * 30)
+
+for i in range(1, 11):
+    nome = input(f"Digite o nome da {i}ª pessoa: ")
+    salario_bruto = float(input(f"Digite o salário bruto de {nome}: R$ "))
+    
+    # Lógica para determinar a alíquota
+    if salario_bruto < 1300.00:
+        aliquota = "Isento"
+        valor_imposto = 0.0
+    elif 1300.00 <= salario_bruto < 2300.00:
+        aliquota = "10%"
+        valor_imposto = salario_bruto * 0.10
+    else:
+        aliquota = "15%"
+        valor_imposto = salario_bruto * 0.15
+    
+   
+    resultados.append((nome, aliquota, valor_imposto))
+
+
+print("\n" + "="*40)
+print(f"{'NOME':<20} | {'ALÍQUOTA':<10} | {'VALOR IMPOSTO'}")
+print("-" * 40)
+
+for nome, aliq, valor in resultados:
+    print(f"{nome:<20} | {aliq:<10} | R$ {valor:>8.2f}")
 
 #9. No dia da estreia do filme "Procurando Dory", uma grande emissora de TV realizou
 #uma pesquisa logo após o encerramento do filme. Cada espectador respondeu
@@ -109,6 +138,55 @@ def q7() -> None:
 #• A quantidade de pessoas que responderam regular;
 #• A percentagem de pessoas que responderam bom entre todos os expectadores
 #analisados.
+def q9() -> None:
+    soma_idades_excelente = 0
+    cont_excelente = 0
+    cont_regular = 0
+    cont_bom = 0
+    total_espectadores = 20
+
+    print(f"--- Pesquisa de Opinião: Procurando Dory ---")
+    
+    for i in range(1, total_espectadores + 1):
+        print(f"\nEspectador nº {i}:")
+        idade = int(input("Digite a idade: "))
+        
+        # Validação simples da opinião
+        while True:
+            opiniao = int(input("Opinião (3-Excelente, 2-Bom, 1-Regular): "))
+            if opiniao in [1, 2, 3]:
+                break
+            print("Opção inválida! Por favor, use 1, 2 ou 3.")
+
+        # Processamento dos dados de acordo com a opinião
+        if opiniao == 3:
+            soma_idades_excelente += idade
+            cont_excelente += 1
+        elif opiniao == 2:
+            cont_bom += 1
+        elif opiniao == 1:
+            cont_regular += 1
+
+    if cont_excelente > 0:
+        media_excelente = soma_idades_excelente / cont_excelente
+    else:
+        media_excelente = 0
+
+    
+    percentagem_bom = (cont_bom / total_espectadores) * 100
+
+    
+    print("\n" + "="*30)
+    print("RESULTADO DA PESQUISA")
+    print("="*30)
+    
+    if cont_excelente > 0:
+        print(f"Média de idade (Excelente): {media_excelente:.1f} anos")
+    else:
+        print("Média de idade (Excelente): Ninguém respondeu Excelente.")
+        
+    print(f"Quantidade de pessoas (Regular): {cont_regular}")
+    print(f"Percentagem de pessoas (Bom): {percentagem_bom:.1f}%")
 
 #10. Em um campeonato Europeu de Volleyball, se inscreveram 30 países. Sabendo-se
 #que na lista oficial de cada país consta, além de outros dados, peso e idade de 12
@@ -118,6 +196,68 @@ def q7() -> None:
 #• O atleta mais pesado de cada time;
 #• O atleta mais jovem de cada time;
 #• O peso médio e a idade média de todos os participantes.
+def q10() -> None:
+    soma_peso_global = 0
+    soma_idade_global = 0
+    total_participantes = 30 * 12
+    
+    # Laço para os 30 países
+    for pais in range(1, 31):
+        print(f"\n--- PAÍS {pais} ---")
+        
+        # Variáveis para as médias do time atual
+        soma_peso_time = 0
+        soma_idade_time = 0
+        
+        # Variáveis para os destaques do time
+        # Inicializamos com valores extremos para comparação
+        atleta_mais_pesado = 0.0
+        atleta_mais_jovem = 200 # Valor alto inicial para achar o menor
+        
+        # Laço para os 12 jogadores de cada time
+        for jogador in range(1, 13):
+            print(f"Dados do Jogador {jogador}:")
+            peso = float(input(f"  Peso (kg): "))
+            idade = int(input(f"  Idade: "))
+            
+            # Acumulando para as médias do time
+            soma_peso_time += peso
+            soma_idade_time += idade
+            
+            # Acumulando para as médias globais
+            soma_peso_global += peso
+            soma_idade_global += idade
+            
+            # Verificando o mais pesado do time
+            if peso > atleta_mais_pesado:
+                atleta_mais_pesado = peso
+                
+            # Verificando o mais jovem do time
+            if idade < atleta_mais_jovem:
+                atleta_mais_jovem = idade
+        
+        # Cálculos das médias do time atual
+        media_peso_time = soma_peso_time / 12
+        media_idade_time = soma_idade_time / 12
+        
+        # Impressão dos resultados do time
+        print(f"\n>> Resultados do Time {pais}:")
+        print(f"   Peso Médio: {media_peso_time:.2f} kg")
+        print(f"   Idade Médie: {media_idade_time:.1f} anos")
+        print(f"   Atleta mais pesado: {atleta_mais_pesado:.2f} kg")
+        print(f"   Atleta mais jovem: {atleta_mais_jovem} anos")
+        print("-" * 30)
+
+    # Cálculos das médias globais
+    media_peso_global = soma_peso_global / total_participantes
+    media_idade_global = soma_idade_global / total_participantes
+    
+    # Impressão final
+    print("\n" + "="*40)
+    print("ESTATÍSTICAS GERAIS DO CAMPEONATO")
+    print("="*40)
+    print(f"Peso médio de todos os participantes: {media_peso_global:.2f} kg")
+    print(f"Idade média de todos os participantes: {media_idade_global:.1f} anos")
 
 #11. Construa um programa que leia vários números e informe quantos números
 #entre 100 e 200 foram digitados. Quando o valor 0 (zero) for lido, o algoritmo
@@ -175,14 +315,115 @@ def q121() -> None:
 #• O custo total para cada consumidor
 #• O total de consumo para os três tipos de consumidor
 #• A média de consumo dos tipos 1 e 2
+def q13() -> None:
+    consumo_tipo1 = 0.0
+    consumo_tipo2 = 0.0
+    consumo_tipo3 = 0.0
+    
+    # Contadores para calcular a média dos tipos 1 e 2
+    cont_1 = 0
+    cont_2 = 0
+
+    print("--- Sistema de Leitura de Consumo de Energia ---")
+    
+    while True:
+        num_consumidor = int(input("\nNúmero do consumidor (ou 0 para encerrar): "))
+        
+        if num_consumidor == 0:
+            break
+            
+        kwh = float(input("Quantidade de kWh consumidos: "))
+        tipo = int(input("Tipo do consumidor (1-Residencial, 2-Comercial, 3-Industrial): "))
+        
+        custo_total = 0.0
+        
+        # Processamento baseado no tipo
+        if tipo == 1:
+            custo_total = kwh * 0.3
+            consumo_tipo1 += kwh
+            cont_1 += 1
+        elif tipo == 2:
+            custo_total = kwh * 0.5
+            consumo_tipo2 += kwh
+            cont_2 += 1
+        elif tipo == 3:
+            custo_total = kwh * 0.7
+            consumo_tipo3 += kwh
+        else:
+            print("Tipo inválido! Consumo não contabilizado para as estatísticas.")
+            continue
+
+        # Imprime o custo para o consumidor atual
+        print(f"Consumidor #{num_consumidor} | Custo Total: R$ {custo_total:.2f}")
+
+    # Cálculos finais de médias
+    # Média dos tipos 1 e 2 (soma dos consumos / soma das ocorrências)
+    total_casos_1_2 = cont_1 + cont_2
+    if total_casos_1_2 > 0:
+        media_1_2 = (consumo_tipo1 + consumo_tipo2) / total_casos_1_2
+    else:
+        media_1_2 = 0
+
+    # Exibição dos resultados acumulados
+    print("\n" + "="*40)
+    print("RELATÓRIO GERAL DE CONSUMO")
+    print("="*40)
+    print(f"Total Residencial (Tipo 1): {consumo_tipo1:.2f} kWh")
+    print(f"Total Comercial   (Tipo 2): {consumo_tipo2:.2f} kWh")
+    print(f"Total Industrial  (Tipo 3): {consumo_tipo3:.2f} kWh")
+    print("-" * 40)
+    print(f"Média de consumo (Tipos 1 e 2): {media_1_2:.2f} kWh")
+
 
 #14. Faça um programa que leia vários números inteiros e apresente o fatorial de cada
 #número. O algoritmo encerra quando se digita um número menor do que 1.n
+def q14() -> None:
+
+    print("--- Cálculo de Fatorial (Digite 0 ou negativo para sair) ---")
+    
+    while True:
+        num = int(input("\nDigite um número inteiro: "))
+        
+        # Condição de parada: número menor que 1
+        if num < 1:
+            print("Programa encerrado.")
+            break
+            
+        # Cálculo do fatorial
+        fatorial = 1
+        # O fatorial de n é n * (n-1) * (n-2) ... * 1
+        for i in range(1, num + 1):
+            fatorial *= i
+            
+        print(f"O fatorial de {num} (!{num}) é: {fatorial}")
+
+# Executar a função
+if __name__ == "__main__":
+    calcular_fatoriais()
 
 #15. Faça um programa que permita entrar com a idade de várias pessoas e
 #imprima:
 #• total de pessoas com menos de 21 anos
 #• total de pessoas com mais de 50 anos
+def q15() -> None:
+    menores_21 = 0
+    maiores_50 = 0
+
+while True:
+    idade = int(input("Digite a idade (ou um valor negativo para encerrar): "))
+    
+    if idade < 0:
+        break
+
+    if idade < 21:
+        menores_21 += 1
+    elif idade > 50:
+        maiores_50 += 1
+
+print("\nRESULTADOS:")
+print("Total de pessoas com menos de 21 anos:", menores_21)
+print("Total de pessoas com mais de 50 anos:", maiores_50)
+
 
 #16. Sabendo-se que a unidade lógica e aritmética calcula a divisão por meio de subtrações
 #sucessivas, criar um algoritmo que calcule e imprima o resto da divisão de
@@ -197,6 +438,19 @@ def q121() -> None:
 #  5 é o Divisor
 #  2 é o Quociente (resultado inteiro da divisão)
 #  0 é o Resto da Divisão
+def q16() -> None:
+    dividendo = int(input("Digite o dividendo: "))
+    divisor = int(input("Digite o divisor: "))
+    quociente = 0
+    resto = dividendo
+
+# Subtrações sucessivas
+while resto >= divisor:
+    resto -= divisor
+    quociente += 1
+
+print(f"Quociente: {quociente}")
+print(f"Resto: {resto}")
 
 #17. Crie um programa que possa ler um conjunto de pedidos de compra e
 #calcule o valor total da compra. Cada pedido é composto pelos seguintes campos:
@@ -206,7 +460,32 @@ def q121() -> None:
 #• quantidade
 #O programa deverá processar novos pedidos até que o usuário digite 0 (zero)
 #como número do pedido.
- 
+def q17() -> None:
+    total_compra = 0
+
+while True:
+    numero_pedido = int(input("Digite o número do pedido (0 para encerrar): "))
+    
+    if numero_pedido == 0:
+        break
+
+    dia = int(input("Digite o dia do pedido: "))
+    mes = int(input("Digite o mês do pedido: "))
+    ano = int(input("Digite o ano do pedido: "))
+
+    preco_unitario = float(input("Digite o preço unitário: "))
+    quantidade = int(input("Digite a quantidade: "))
+
+    # Cálculo do valor do pedido
+    valor_pedido = preco_unitario * quantidade
+    total_compra += valor_pedido
+
+    print(f"Pedido {numero_pedido} ({dia}/{mes}/{ano})")
+    print(f"Valor do pedido: R$ {valor_pedido:.2f}\n")
+
+# Resultado final
+print(f"Valor total da compra: R$ {total_compra:.2f}")
+
 #18. Uma pousada estipulou o preço para a diária em R$30,00 e mais uma taxa de
 #serviços diários de:
 #• R$15,00, se o número de dias for menor que 10;
@@ -267,6 +546,34 @@ def q121() -> None:
 #imprimir também o número da carteira do motorista que obteve o maior número
 #de multas.
 #Obs.: O programa encerra ao ler a carteira de motorista de valor 0.
+def q22() -> None:
+    resultados = []
+    print("Entrada de Dados - IRPF")
+    print ("-" * 30)
+
+    for i in range (1, 11):
+        nome = input (f"Digite o nome da {i}º pessoa: ")
+        salario_bruto = float(input(f"Digite o salario bruto de {nome}: R$ "))
+        
+        if salario_bruto < 1300.00:
+            aliquota = "Isento"
+            valor_imposto = 0.0
+        elif 1300.00 <= salario_bruto < 2300.00
+        aliquota = "10%"
+        valor_imposto = salario_bruto * 0.10
+        else:
+            aliquota =  "15%"
+            valor_imposto = salario_bruto * 0.15
+
+        resultados.append((nome, aliquota, valor_imposto))
+
+print("\n" + "="*40)
+print(f"{'NOME':<20} | {'ALÍQUOTA':<10} | {'VALOR IMPOSTO'}")
+print("-" * 40)
+
+for nome, aliq, valor in resultados:
+    print(f"{nome:<20} | {aliq:<10} | R$ {valor:>8.2f}")
+
 
 #23. Crie um programa que leia um conjunto de informações (nome, sexo, idade, peso
 #e altura) dos atletas que participaram de uma olimpíada, e informar:
@@ -277,6 +584,63 @@ def q121() -> None:
 #atleta.
 #Para resolver este exercício, consulte a aula 7 que aborda o tratamento de strings,
 #como comparação e atribuição de textos.
+def q23() -> None:
+    # Inicialização das variáveis
+    mais_alta_nome = ""
+    mais_alta_altura = 0
+    mais_pesado_nome = ""
+    mais_pesado_peso = 0
+    soma_idades = 0
+    quantidade = 0
+
+while True:
+    nome = input("Digite o nome do atleta (@ para encerrar): ")
+    
+    if nome == "@":
+        break
+
+    sexo = input("Digite o sexo (M/F): ").upper()
+    idade = int(input("Digite a idade: "))
+    peso = float(input("Digite o peso (kg): "))
+    altura = float(input("Digite a altura (m): "))
+
+    # Contagem e soma das idades
+    soma_idades += idade
+    quantidade += 1
+
+    # Verifica atleta feminina mais alta
+    if sexo == "F":
+        if altura > mais_alta_altura:
+            mais_alta_altura = altura
+            mais_alta_nome = nome
+
+    # Verifica atleta masculino mais pesado
+    if sexo == "M":
+        if peso > mais_pesado_peso:
+            mais_pesado_peso = peso
+            mais_pesado_nome = nome
+
+# Resultados
+if quantidade > 0:
+    media_idade = soma_idades / quantidade
+else:
+    media_idade = 0
+
+print("\nRESULTADOS:")
+
+if mais_alta_nome != "":
+    print("Atleta feminina mais alta:", mais_alta_nome, "-", mais_alta_altura, "m")
+else:
+    print("Nenhuma atleta feminina informada.")
+
+if mais_pesado_nome != "":
+    print("Atleta masculino mais pesado:", mais_pesado_nome, "-", mais_pesado_peso, "kg")
+else:
+    print("Nenhum atleta masculino informado.")
+
+print("Média de idade dos atletas:", media_idade)
+
+
 
 #24. Faça um programa que calcule quantos litros de gasolina são usados em uma
 #viagem, sabendo que um carro faz 10 km/litro. O usuário fornecerá a velocidade
@@ -288,6 +652,30 @@ def q121() -> None:
 #Deverá imprimir também o total de litros gastos na viagem. O programa encerra
 #quando o usuário informar um valor negativo de velocidade.
 #74 Aula 3. Estruturas de Iteração
+def q24() -> None:
+    total_litros = 0
+
+while True:
+    velocidade = float(input("Digite a velocidade (km/h) (negativa para encerrar): "))
+    
+    if velocidade < 0:
+        break
+
+    tempo = float(input("Digite o tempo de viagem (h): "))
+
+    # Cálculos
+    distancia = velocidade * tempo
+    litros = distancia / 10  # carro faz 10 km/l
+
+    total_litros += litros
+
+    # Resultados do trecho
+    print(f"Distância percorrida: {distancia:.2f} km")
+    print(f"Litros consumidos: {litros:.2f} L\n")
+
+# Resultado final
+print(f"Total de litros consumidos na viagem: {total_litros:.2f} L")
+
 
 #25. Faça um programa que calcule o imposto de renda de um grupo de contribuintes,
 #considerando que:
@@ -308,6 +696,41 @@ def q121() -> None:
 #g) ao final o programa deverá imprimir o total do imposto arrecadado pela
 #Receita Federal e o número de contribuintes isentos;
 #h) leve em consideração o fato de o primeiro CIC informado poder ser zero.
+def q25() -> None:
+    total_imposto = 0
+    qtd_isentos = 0
+
+while True:
+    cic = int(input("Digite o CIC (0 para encerrar): "))
+    
+    if cic == 0:
+        break
+
+    dependentes = int(input("Digite o número de dependentes: "))
+    renda_bruta = float(input("Digite a renda bruta anual: "))
+
+    # Cálculos
+    abatimento = dependentes * 600
+    renda_liquida = renda_bruta - abatimento
+
+    if renda_liquida <= 1000:
+        imposto = 0
+        qtd_isentos += 1
+    elif renda_liquida <= 5000:
+        imposto = renda_liquida * 0.15
+    else:
+        imposto = renda_liquida * 0.25
+
+    total_imposto += imposto
+
+    # Resultado individual
+    print(f"CIC: {cic}")
+    print(f"Imposto a pagar: R$ {imposto:.2f}\n")
+
+# Resultados finais
+print("RESULTADO FINAL:")
+print(f"Total de imposto arrecadado: R$ {total_imposto:.2f}")
+print(f"Número de contribuintes isentos: {qtd_isentos}")
 
 #26. Foi feita uma pesquisa de audiência de canal de TV em várias casas de uma
 #certa cidade, em um determinado dia. Para cada casa visitada foram fornecidos o
